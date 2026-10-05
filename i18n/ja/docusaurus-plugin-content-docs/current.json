@@ -1,0 +1,14 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Getting started": {
+    "message": "はじめに",
+    "description": "The label for category 'Getting started' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Community": {
+    "message": "コミュニティ",
+    "description": "The label for category 'Community' in sidebar 'docs'"
+  }
+}

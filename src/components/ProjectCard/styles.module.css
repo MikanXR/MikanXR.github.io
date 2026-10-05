@@ -1,0 +1,67 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem 1.4rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--mikan-line);
+  border-radius: 10px;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.badge {
+  flex-shrink: 0;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badgeAvailable {
+  background: var(--mikan-accent-soft);
+  color: var(--ifm-color-primary);
+}
+
+.badgePreview {
+  background: var(--mikan-accent-soft);
+  color: var(--ifm-color-primary-darkest);
+}
+
+[data-theme='dark'] .badgePreview {
+  color: var(--ifm-color-primary-lightest);
+}
+
+.badgeComingSoon {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--mikan-muted);
+}
+
+.description {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  color: var(--mikan-muted);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

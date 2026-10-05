@@ -1,0 +1,49 @@
+/**
+ * Global styles. Overrides the Infima variables with the MikanXR palette:
+ * a warm off-white or near-black background with an orange accent.
+ */
+
+:root {
+  --ifm-color-primary: #d2600f;
+  --ifm-color-primary-dark: #bd560e;
+  --ifm-color-primary-darker: #b3520d;
+  --ifm-color-primary-darkest: #93430b;
+  --ifm-color-primary-light: #e06a17;
+  --ifm-color-primary-lighter: #e8711a;
+  --ifm-color-primary-lightest: #ee8a40;
+  --ifm-background-color: #fbfaf8;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-font-color-base: #1c1a17;
+  --ifm-color-emphasis-300: #e4ded6;
+  --ifm-code-font-size: 95%;
+  --mikan-muted: #5f5850;
+  --mikan-line: #e4ded6;
+  --mikan-accent-soft: #fdf0e4;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #f59042;
+  --ifm-color-primary-dark: #f3802a;
+  --ifm-color-primary-darker: #f27720;
+  --ifm-color-primary-darkest: #d9600c;
+  --ifm-color-primary-light: #f7a05c;
+  --ifm-color-primary-lighter: #f8a866;
+  --ifm-color-primary-lightest: #fabe8a;
+  --ifm-background-color: #16140f;
+  --ifm-background-surface-color: #1e1b16;
+  --ifm-font-color-base: #eceae6;
+  --ifm-color-emphasis-300: #322d25;
+  --mikan-muted: #a49c91;
+  --mikan-line: #322d25;
+  --mikan-accent-soft: #2a2015;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #1c1a17;
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #0f0d0a;
+}
