@@ -23,6 +23,9 @@
   "home.integration.vnyan.description": {
     "message": "VTuber アプリケーション VNyan に MikanXR の複合現実合成を提供します。"
   },
+  "home.integration.warudo.description": {
+    "message": "VTuber アプリケーション Warudo に MikanXR の複合現実合成を提供します。"
+  },
   "home.hero.tagline": {
     "message": "複合現実のキャプチャ、キャリブレーション、合成のためのオープンソースツール。"
   },
@@ -69,7 +72,13 @@
     "message": "エンジン連携"
   },
   "home.integrations.intro": {
-    "message": "ゲームエンジンや VTuber アプリケーションを MikanXR エディターに接続するプラグイン。"
+    "message": "ゲームエンジンを MikanXR エディターに接続するプラグイン。"
+  },
+  "home.appIntegrations.title": {
+    "message": "アプリケーション連携"
+  },
+  "home.appIntegrations.intro": {
+    "message": "VTuber アプリケーションを MikanXR エディターに接続するプラグイン。"
   },
   "projectCard.status.available": {
     "message": "公開中"

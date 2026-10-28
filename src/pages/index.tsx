@@ -78,15 +78,30 @@ const integrations: ProjectCardProps[] = [
     ),
     links: [{label: githubLabel, to: 'https://github.com/MikanXR/MikanXR_Unity'}],
   },
+];
+
+const applicationIntegrations: ProjectCardProps[] = [
   {
     title: 'VNyan',
-    status: 'comingSoon',
+    status: 'preview',
     description: (
       <Translate id="home.integration.vnyan.description">
         Brings MikanXR mixed reality compositing to the VNyan VTubing
         application.
       </Translate>
     ),
+    links: [{label: githubLabel, to: 'https://github.com/MikanXR/MikanXR_VNyan'}],
+  },
+  {
+    title: 'Warudo',
+    status: 'preview',
+    description: (
+      <Translate id="home.integration.warudo.description">
+        Brings MikanXR mixed reality compositing to the Warudo VTubing
+        application.
+      </Translate>
+    ),
+    links: [{label: githubLabel, to: 'https://github.com/MikanXR/MikanXR_Warudo'}],
   },
 ];
 
@@ -223,11 +238,21 @@ export default function Home(): ReactNode {
           title={<Translate id="home.integrations.title">Engine integrations</Translate>}
           intro={
             <Translate id="home.integrations.intro">
-              Plugins that connect game engines and VTubing applications to the
-              MikanXR editor.
+              Plugins that connect game engines to the MikanXR editor.
             </Translate>
           }
           cards={integrations}
+        />
+        <CardSection
+          title={
+            <Translate id="home.appIntegrations.title">Application integrations</Translate>
+          }
+          intro={
+            <Translate id="home.appIntegrations.intro">
+              Plugins that connect VTubing applications to the MikanXR editor.
+            </Translate>
+          }
+          cards={applicationIntegrations}
         />
         <Contact />
       </main>
