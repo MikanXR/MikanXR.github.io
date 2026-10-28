@@ -65,7 +65,7 @@ const integrations: ProjectCardProps[] = [
         scene as actors, and publishes render targets back to the compositor.
       </Translate>
     ),
-    links: [{label: githubLabel, to: 'https://github.com/brendanwalker/MikanXR_UE'}],
+    links: [{label: githubLabel, to: 'https://github.com/MikanXR/MikanXR_UE'}],
   },
   {
     title: 'Unity',
@@ -76,7 +76,7 @@ const integrations: ProjectCardProps[] = [
         MikanXR client API.
       </Translate>
     ),
-    links: [{label: githubLabel, to: 'https://github.com/brendanwalker/MikanXR_Unity'}],
+    links: [{label: githubLabel, to: 'https://github.com/MikanXR/MikanXR_Unity'}],
   },
   {
     title: 'VNyan',
