@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>MikanTrack camera calibration pattern</title>
+<style>
+	html, body {
+		margin: 0;
+		height: 100%;
+		background: #000;
+		overflow: hidden;
+		touch-action: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+	canvas {
+		position: fixed;
+		left: 0;
+		top: 0;
+	}
+	#hint {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+		font: 14px/1.4 system-ui, sans-serif;
+		color: #ddd;
+		background: rgba(0, 0, 0, 0.85);
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<canvas id="board"></canvas>
+<div id="hint"></div>
+<script>
+// The chessboard MikanTrack's lens calibration looks for: 10 by 5 squares
+// with a white margin half a square wide, the top left square black.
+// Every square is a whole number of device pixels, so no edge is resampled.
+const SQUARE_COLS = 10;
+const SQUARE_ROWS = 5;
+
+const HINTS = {
+	en: 'Hold this screen 20 to 30 cm from the webcam and keep lamps from reflecting on it. ' +
+		'If the pattern is not found, lower the screen brightness. Tap to hide this text.',
+	ja: 'この画面をウェブカメラから20〜30cmの位置にかざし、照明が映り込まないようにしてください。' +
+		'パターンが検出されない場合は画面の明るさを下げてください。タップするとこの文章が消えます。',
+};
+
+const canvas = document.getElementById('board');
+const hint = document.getElementById('hint');
+hint.textContent = (navigator.language || 'en').startsWith('ja') ? HINTS.ja : HINTS.en;
+
+function draw() {
+	const scale = window.devicePixelRatio || 1;
+	const width = Math.floor(window.innerWidth * scale);
+	const height = Math.floor(window.innerHeight * scale);
+	canvas.width = width;
+	canvas.height = height;
+	canvas.style.width = (width / scale) + 'px';
+	canvas.style.height = (height / scale) + 'px';
+
+	// The board's long side runs along the screen's long side, so the phone
+	// can be held either way up without turning the page
+	const portrait = height > width;
+	const cols = portrait ? SQUARE_ROWS : SQUARE_COLS;
+	const rows = portrait ? SQUARE_COLS : SQUARE_ROWS;
+
+	// Squares plus half a square of margin on each side
+	const square = Math.floor(Math.min(width / (cols + 1), height / (rows + 1)) / 2) * 2;
+	const margin = square / 2;
+	const boardWidth = cols * square + 2 * margin;
+	const boardHeight = rows * square + 2 * margin;
+	const left = Math.floor((width - boardWidth) / 2);
+	const top = Math.floor((height - boardHeight) / 2);
+
+	const context = canvas.getContext('2d');
+	context.fillStyle = '#000';
+	context.fillRect(0, 0, width, height);
+	context.fillStyle = '#fff';
+	context.fillRect(left, top, boardWidth, boardHeight);
+	context.fillStyle = '#000';
+	for (let row = 0; row < rows; ++row) {
+		for (let col = 0; col < cols; ++col) {
+			if ((row + col) % 2 === 0) {
+				context.fillRect(left + margin + col * square, top + margin + row * square, square, square);
+			}
+		}
+	}
+}
+
+let wakeLock = null;
+async function keepAwake() {
+	if (!('wakeLock' in navigator) || wakeLock !== null) {
+		return;
+	}
+	try {
+		wakeLock = await navigator.wakeLock.request('screen');
+		wakeLock.addEventListener('release', () => { wakeLock = null; });
+	} catch (error) {
+		// Refused, on low battery for one. The pattern still shows.
+	}
+}
+
+document.addEventListener('click', () => {
+	hint.style.display = 'none';
+	keepAwake();
+	const root = document.documentElement;
+	if (root.requestFullscreen && !document.fullscreenElement) {
+		root.requestFullscreen().catch(() => {});
+	}
+});
+document.addEventListener('visibilitychange', () => {
+	if (document.visibilityState === 'visible') {
+		keepAwake();
+	}
+});
+window.addEventListener('resize', draw);
+window.addEventListener('orientationchange', draw);
+
+draw();
+keepAwake();
+</script>
+</body>
+</html>
